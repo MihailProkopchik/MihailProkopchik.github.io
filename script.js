@@ -3,11 +3,16 @@
 let randomFour = getRandomFour().join('');
 
 let answer;
+let arr = [];
 let bulls = 0;
 let cows = 0;
 let counter = 0;
-do {
-    answer = prompt('Введите 4-х значное число,цифры не повторяются');
+
+let btn = document.querySelector('#btn');
+let num = document.querySelector('#num');
+let ans = document.querySelector('#area');
+btn.addEventListener('click', () => {
+    answer = num.value;
     counter++;
     for (let index = 0; index < 4; index++) {
         if (answer[index] === randomFour[index]) {
@@ -16,11 +21,13 @@ do {
             cows++;
         }
     }
-    console.log(`Ваш ответ: ${answer} Быков: ${bulls},коров: ${cows}`);
+    ans.value += `Ваш ответ: ${answer} Быков: ${bulls},коров: ${cows} `;
     bulls = 0;
     cows = 0;
-} while (answer !== randomFour);
-console.log(`Позравляем Вы победили попыток: ${counter}`);
+    if (answer === randomFour) {
+        ans.value += `Позравляем Вы победили попыток: ${counter}`;
+    }
+});
 
 /////////////////////
 function getRandomFour() {
